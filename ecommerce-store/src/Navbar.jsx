@@ -14,6 +14,14 @@ const Navbar = () => {
       <div className="navbar-container">
         <Link to="/" className="logo">TeeRex Store</Link>
 
+      
+
+        <div className={`nav-links ${isMobileOpen ? "open" : ""}`}>
+          <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={() => setIsMobileOpen(false)}>
+            Products
+          </Link>
+        </div>
+
         <div className="mobile-icons">
           <Link to="/cart" className="cart-icon">
             <FiShoppingCart />
@@ -22,12 +30,6 @@ const Navbar = () => {
           <button className="menu-toggle" onClick={() => setIsMobileOpen(!isMobileOpen)}>
             {isMobileOpen ? <FiX /> : <FiMenu />}
           </button>
-        </div>
-
-        <div className={`nav-links ${isMobileOpen ? "open" : ""}`}>
-          <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={() => setIsMobileOpen(false)}>
-            Products
-          </Link>
         </div>
       </div>
     </nav>
