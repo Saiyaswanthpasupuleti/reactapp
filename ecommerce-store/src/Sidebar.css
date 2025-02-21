@@ -1,108 +1,54 @@
-.sidebar {
-    position: fixed;
-    left: -300px;
-    top: 0;
+.sidebar-fixed {
     width: 250px;
-    height: 100%;
-    background: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease;
+    background: #f8f9fa;
     padding: 20px;
-    z-index: 1001;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 80px;
   }
   
-  .sidebar.open {
-    left: 0;
-  }
-  
-  .sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    z-index: 1000;
-  }
-  
-  .sidebar.open + .sidebar-overlay {
-    display: block;
-  }
-  
-  .filters-container {
-    overflow-y: auto;
-    margin-bottom: 10px;
-  }
-  
-  .filter-group {
+  .sidebar-fixed h3 {
+    font-size: 20px;
     margin-bottom: 15px;
   }
   
-  .filter-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
+  .sidebar-fixed h4 {
+    font-size: 18px;
+    margin-top: 15px;
   }
   
-  .filter-label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .filter-buttons {
+  .sidebar-fixed label {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .apply-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 70%;
-  }
-  
-  .close-btn {
-    background: red;
-    color: white;
-    border: none;
-    cursor: pointer;
+    align-items: center;
+    margin: 5px 0;
     font-size: 16px;
-    border-radius: 5px;
-    width: 25%;
+    cursor: pointer;
   }
   
-  .sidebar-toggle {
-    position: fixed;
-    left: 15px;
-    top: 15px;
+  .sidebar-fixed input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    appearance: none;
+    border: 2px solid black;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .sidebar-fixed input[type="checkbox"]:checked {
     background-color: black;
+    border: 2px solid black;
+  }
+  
+  .sidebar-fixed input[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 14px;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    z-index: 1100;
-    transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 3px;
+    top: -1px;
   }
   
-  .sidebar-toggle:hover {
-    background-color: #222;
-  }
-  
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 80%;
-    }
-  
-    .sidebar-toggle {
-      left: 10px;
-      padding: 8px 12px;
-      font-size: 14px;
-    }
-  }

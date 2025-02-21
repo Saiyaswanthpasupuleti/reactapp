@@ -3,18 +3,12 @@ import { useCart } from "./CartContext";
 import Sidebar from "./Sidebar";
 import "./Products.css";
 
-const API_URL =
-  "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
+const API_URL = "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState({
-    color: [],
-    gender: [],
-    price: [],
-    type: [],
-  });
+  const [filters, setFilters] = useState({ color: [], gender: [], price: [], type: [] });
 
   const { addToCart } = useCart();
 
@@ -30,17 +24,12 @@ const Products = () => {
 
   const matchesFilters = (product) => {
     return Object.keys(filters).every((key) => {
-      return (
-        filters[key].length === 0 ||
-        filters[key].some((selectedValue) => product[key] === selectedValue)
-      );
+      return filters[key].length === 0 || filters[key].some((selectedValue) => product[key] === selectedValue);
     });
   };
 
   const filteredProducts = products
-    .filter((product) =>
-      product.name.toLowerCase().includes(search.toLowerCase())
-    )
+    .filter((product) => product.name.toLowerCase().includes(search.toLowerCase()))
     .filter(matchesFilters);
 
   return (
@@ -48,12 +37,7 @@ const Products = () => {
       <Sidebar onFilterChange={handleFilterChange} products={products} />
       <div className="products-content">
         <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search for products..."
-            onChange={(e) => setSearch(e.target.value)}
-            className="search-box"
-          />
+          <input type="text" placeholder="Search for products..." onChange={(e) => setSearch(e.target.value)} className="search-box" />
         </div>
 
         <div className="products-grid">

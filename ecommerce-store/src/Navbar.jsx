@@ -12,32 +12,20 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
-        <Link to="/" className="logo">
-          TeeRex Store
-        </Link>
+        <Link to="/" className="logo">TeeRex Store</Link>
 
-        {/* Mobile View: Cart Icon & Toggle Menu */}
         <div className="mobile-icons">
           <Link to="/cart" className="cart-icon">
             <FiShoppingCart />
             {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
           </Link>
-          <button
-            className="menu-toggle"
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-          >
+          <button className="menu-toggle" onClick={() => setIsMobileOpen(!isMobileOpen)}>
             {isMobileOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
 
-        {/* Desktop Navigation */}
         <div className={`nav-links ${isMobileOpen ? "open" : ""}`}>
-          <Link
-            to="/"
-            className={location.pathname === "/" ? "active" : ""}
-            onClick={() => setIsMobileOpen(false)}
-          >
+          <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={() => setIsMobileOpen(false)}>
             Products
           </Link>
         </div>

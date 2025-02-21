@@ -2,69 +2,43 @@ import React, { useState } from "react";
 import "./Sidebar.css";
 
 const Sidebar = ({ onFilterChange, products }) => {
-  const [tempFilters, setTempFilters] = useState({
-    color: [],
-    gender: [],
-    price: [],
-    type: [],
-  });
-
-  const [isOpen, setIsOpen] = useState(false);
+  const [tempFilters, setTempFilters] = useState({ color: [], gender: [], price: [], type: [] });
 
   const getUniqueValues = (category) => {
     return [...new Set(products.map((product) => product[category]))].filter(Boolean);
   };
 
   const handleCheckboxChange = (category, value) => {
-    setTempFilters((prevFilters) => ({
-      ...prevFilters,
-      [category]: prevFilters[category].includes(value)
-        ? prevFilters[category].filter((item) => item !== value)
-        : [...prevFilters[category], value],
-    }));
-  };
+    const updatedFilters = {
+      ...tempFilters,
+      [category]: tempFilters[category].includes(value)
+        ? tempFilters[category].filter((item) => item !== value)
+        : [...tempFilters[category], value],
+    };
 
-  const handleApplyFilters = () => {
-    onFilterChange(tempFilters);
-    setIsOpen(false);
+    setTempFilters(updatedFilters);
+    onFilterChange(updatedFilters); // Directly apply filter changes
   };
 
   return (
-    <>
-      <button className="sidebar-toggle" onClick={() => setIsOpen(true)}>
-        ☰ Filters
-      </button>
-
-      <div className={`sidebar-overlay ${isOpen ? "active" : ""}`} onClick={() => setIsOpen(false)}></div>
-
-      <div className={`sidebar ${isOpen ? "open" : ""}`}>
-        <div className="filters-container">
-          {["color", "gender", "price", "type"].map((category) => (
-            <div key={category} className="filter-group">
-              <h4 className="filter-title">{category}</h4>
-              <div>
-                {getUniqueValues(category).map((item) => (
-                  <label key={item} className="filter-label">
-                    <input
-                      type="checkbox"
-                      checked={tempFilters[category].includes(item)}
-                      onChange={() => handleCheckboxChange(category, item)}
-                      className="filter-checkbox"
-                    />
-                    {item}
-                  </label>
-                ))}
-              </div>
-            </div>
+    <div className="sidebar-fixed">
+      <h3>Filters</h3>
+      {["color", "gender", "price", "type"].map((category) => (
+        <div key={category}>
+          <h4>{category}</h4>
+          {getUniqueValues(category).map((value) => (
+            <label key={value}>
+              <input
+                type="checkbox"
+                checked={tempFilters[category].includes(value)}
+                onChange={() => handleCheckboxChange(category, value)}
+              />
+              {value}
+            </label>
           ))}
-
-          <div className="filter-buttons">
-            <button className="apply-btn" onClick={handleApplyFilters}>Apply</button>
-            <button className="close-btn" onClick={() => setIsOpen(false)}>✖</button>
-          </div>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 };
 
