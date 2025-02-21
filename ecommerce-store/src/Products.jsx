@@ -9,6 +9,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState({ color: [], gender: [], price: [], type: [] });
+  const [notification, setNotification] = useState(""); // State for notification
 
   const { addToCart } = useCart();
 
@@ -28,6 +29,16 @@ const Products = () => {
     });
   };
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setNotification(`${product.name} added to cart!`);
+
+    // Hide the notification after 2 seconds
+    setTimeout(() => {
+      setNotification(null);
+    }, 2000);
+  };
+
   const filteredProducts = products
     .filter((product) => product.name.toLowerCase().includes(search.toLowerCase()))
     .filter(matchesFilters);
@@ -40,6 +51,9 @@ const Products = () => {
           <input type="text" placeholder="Search for products..." onChange={(e) => setSearch(e.target.value)} className="search-box" />
         </div>
 
+        {/* Notification Message */}
+        {notification && <div className="notification">{notification}</div>}
+
         <div className="products-grid">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -47,7 +61,7 @@ const Products = () => {
                 <img src={product.imageURL} alt={product.name} />
                 <h3>{product.name}</h3>
                 <p>Rs {product.price}</p>
-                <button onClick={() => addToCart(product)}>Add to Cart</button>
+                <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
               </div>
             ))
           ) : (
