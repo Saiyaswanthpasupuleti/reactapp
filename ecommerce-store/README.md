@@ -68,3 +68,38 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+# reactapp
+
+Shopping Cart Application using reactjs 
+
+This is a simple shopping cart application built using React, React Router, and Context API for state management. The project includes functionalities like adding items to the cart, updating quantities, removing items, and checking out.
+
+Features
+View a list of available products.
+Add products to the cart.
+Increase or decrease product quantity.
+Remove items from the cart.
+View total price in the cart.
+Checkout with a simple form.
+
+
+Tech Stack
+React
+React Router
+CSS for styling
+
+Installation
+Clone the repository:
+Copy
+Edit
+git clone https://github.com/yourusername/shopping-cart.git  
+cd shopping-cart  
+Install dependencies:
+
+
+On the home page, users can browse products and add them to the cart.
+The cart page allows users to modify item quantities or remove them.
+The checkout page collects user details and confirms the order.
