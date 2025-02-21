@@ -17,7 +17,7 @@ const Sidebar = ({ onFilterChange, products }) => {
     };
 
     setTempFilters(updatedFilters);
-    onFilterChange(updatedFilters); // Directly apply filter changes
+    onFilterChange(updatedFilters); 
   };
 
   return (
