@@ -84,3 +84,18 @@
     }
   }
   
+  .checkout-btn {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .checkout-btn:hover {
+    background-color: darkgreen;
+  }
+  

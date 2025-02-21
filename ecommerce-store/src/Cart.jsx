@@ -1,9 +1,11 @@
 import React from "react";
 import { useCart } from "./CartContext";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, getTotalPrice } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div className="cart-container">
@@ -31,6 +33,9 @@ const Cart = () => {
           ))}
           <hr />
           <h3>Total amount: Rs. {getTotalPrice()}</h3>
+          <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+            Proceed to Checkout
+          </button>
         </>
       )}
     </div>
